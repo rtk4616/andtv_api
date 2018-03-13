@@ -124,6 +124,7 @@ For example:
 <span style="background-color:Cyan">[例如：]</span>
 
 
+```java
 
             /*
              * handleMessage() defines the operations to perform when
@@ -138,6 +139,8 @@ For example:
         ...
         }
     }
+
+```
 
 The next section shows how to tell the [Handler](https://developer.android.com/reference/android/os/Handler.html) to move data.
 
@@ -182,6 +185,7 @@ The [Runnable](https://developer.android.com/reference/java/lang/Runnable.html) 
 <span style="background-color:Cyan">[Runnable還存儲狀態碼DECODE_STATE_COMPLETED。]</span>
 
 
+```java
 
     // A class that decodes photo files into Bitmaps
     class PhotoDecodeRunnable implements Runnable {
@@ -213,6 +217,9 @@ The [Runnable](https://developer.android.com/reference/java/lang/Runnable.html) 
         ...
     }
     ...
+
+```
+
 
 `PhotoTask` also contains a handle to the [ImageView](https://developer.android.com/reference/android/widget/ImageView.html) that displays the [Bitmap](https://developer.android.com/reference/android/graphics/Bitmap.html).
 
@@ -246,6 +253,7 @@ It receives a status code from `PhotoDecodeRunnable` and passes it along to the 
 <span style="background-color:Cyan">[它從PhotoDecodeRunnable接收狀態碼，並將其傳遞給維護線程池並實例化Handler的對象：]</span>
 
 
+```java
 
     public class PhotoTask {
         ...
@@ -278,6 +286,8 @@ It receives a status code from `PhotoDecodeRunnable` and passes it along to the 
         ...
     }
 
+```
+
 ### Move data to the UI
 
 <span style="background-color:Cyan">[將數據移動到用戶界面]</span>
@@ -292,6 +302,7 @@ Because the status is `TASK_COMPLETE`, creates a [Message](https://developer.and
 <span style="background-color:Cyan">[由於狀態為TASK_COMPLETE，因此會創建一個包含狀態和任務對象的消息並將其發送給處理程序：]</span>
 
 
+```java
 
     public class PhotoManager {
         ...
@@ -314,6 +325,8 @@ Because the status is `TASK_COMPLETE`, creates a [Message](https://developer.and
             ...
         }
 
+```
+
 Finally, [Handler.handleMessage()](https://developer.android.com/reference/android/os/Handler.html#handleMessage\(android.os.Message\)) checks the status code for each incoming [Message](https://developer.android.com/reference/android/os/Message.html).
 
 <span style="background-color:Cyan">[最後，Handler.handleMessage（）檢查每個傳入消息的狀態碼。]</span>
@@ -327,6 +340,7 @@ Because [Handler.handleMessage()](https://developer.android.com/reference/androi
 <span style="background-color:Cyan">[因為Handler.handleMessage（）在UI線程上運行，所以它可以安全地將位圖移動到ImageView：]</span>
 
 
+```java
 
         private PhotoManager() {
             ...
@@ -363,6 +377,8 @@ Because [Handler.handleMessage()](https://developer.android.com/reference/androi
         }
     ...
     }
+
+```
 
 
 <span style="background-color:Cyan">[上一页  arrow_back  Running Code on a Thread Pool Thread ](https://developer.android.com/training/multiple-threads/run-code.html)
